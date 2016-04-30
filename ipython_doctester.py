@@ -88,12 +88,17 @@ class Reporter(object):
         # else:
         #     IPython.core.displaypub.publish_pretty(self.txt)
 
+        # if self.html:
+        #     publish_display_data("ipython_doctester",
+        #                          {'text/html': self._repr_html_()})
+        # else:
+        #     publish_display_data("ipython_doctester",
+        #                          {'text/plain': self.txt})
+
         if self.html:
-            publish_display_data("ipython_doctester",
-                                 {'text/html': self._repr_html_()})
+            publish_display_data({'text/html': self._repr_html_()})
         else:
-            publish_display_data("ipython_doctester",
-                                 {'text/plain': self.txt})
+            publish_display_data({'text/plain': self.txt})
 
     def _repr_html_(self):
         result = self.fail_template if self.failed else self.success_template
